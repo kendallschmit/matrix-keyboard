@@ -16,13 +16,13 @@
 // top /bottom switch: 18/ 19
 // led out: lhs board 23, rhs board 24
 
-const int MATRIX_OUT[] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-// maps to board pins:     1  2  3  4  5  6  7  8  23  24
-#define MATRIX_OUT_COUNT 10
+const int MATRIX_OUT[] = { 2, 3, 4, 5, 6, 7, 8, 9, };
+// maps to board pins:     1  2  3  4  5  6  7  8
+#define MATRIX_OUT_COUNT 8
 
-const int MATRIX_IN[] = { 12, 14, 15, 16, 18, 19, 20, 21 };
-// maps to board pins:    9   10  11  12  13  14  15  16
-#define MATRIX_IN_COUNT 8
+const int MATRIX_IN[] = { 12, 14, 15, 16, 18, 19, 20, 21, 10, 11 };
+// maps to board pins:    9   10  11  12  13  14  15  16  23  24
+#define MATRIX_IN_COUNT 10
 
 const int MATRIX_KEY[MATRIX_IN_COUNT][MATRIX_OUT_COUNT] {
     { KEY_ESC, MODIFIERKEY_CTRL, MODIFIERKEY_ALT, MODIFIERKEY_RIGHT_GUI, MODIFIERKEY_RIGHT_CTRL, 0, 0, 0, 0, 0 },
@@ -54,7 +54,7 @@ void loop() {
         int out_pin = MATRIX_OUT[out];
         digitalWrite(out_pin, LOW);
         for (int in = 0; in < MATRIX_IN_COUNT; in++) {
-            if (matrix_debounce[out][in]) {
+            if (matrix_debounce[out][in] != 0) {
                 if (millis() - matrix_debounce[out][in] >= DEBOUNCE_MS) {
                     matrix_debounce[out][in] = 0;
                 }
