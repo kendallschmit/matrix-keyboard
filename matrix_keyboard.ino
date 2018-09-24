@@ -33,7 +33,7 @@ const int MATRIX_KEY[MATRIX_IN_COUNT][MATRIX_OUT_COUNT] {
     { KEY_5, KEY_T, KEY_G, KEY_B, KEY_6, KEY_Y, KEY_H, KEY_N, 0, 0},
     { KEY_3, KEY_E, KEY_D, KEY_C, KEY_4, KEY_R, KEY_F, KEY_V, 0, 0},
     { KEY_1, KEY_Q, KEY_A, KEY_Z, KEY_2, KEY_W, KEY_S, KEY_X, 0, 0}
-}
+};
 
 #define DEBOUNCE_MS 20
 int matrix_debounce[MATRIX_IN_COUNT][MATRIX_OUT_COUNT] = {};
@@ -76,5 +76,6 @@ void loop() {
                 }
             }
         }
+        digitalWrite(out_pin, HIGH);
     }
 }
